@@ -1,0 +1,12 @@
+{
+  "pipeline": [
+    "2713_1232.las",
+    {
+      "type":"filters.range",
+      "limits":"Classification[1:1]"
+    },
+    {
+      "filename":"2712_1232_no_ground.las"
+  }
+  ]
+}

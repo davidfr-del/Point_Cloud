@@ -1,0 +1,19 @@
+{
+    "pipeline": [
+      "2713_1232.las",
+      {
+        "type": "filters.hag_nn"
+      },
+      {
+        "type": "filters.range",
+        "limits": "HeightAboveGround[5:)"
+      },
+      {
+        "type":"filters.range",
+        "limits":"Classification[1:1]"
+      },
+      {
+        "filename":"2715_1234_no_ground_height.las"
+    }
+    ]
+  }
