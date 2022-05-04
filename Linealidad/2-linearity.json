@@ -1,0 +1,29 @@
+[
+    "./data/2713_1232_no_ground.las",
+    {
+        "type":"filters.covariancefeatures",
+        "knn":20,
+        "threads": 2,
+        "feature_set": "Linearity"
+    },
+    {
+        "type":"writers.bpf",
+        "filename":"./data/2-linearity.bpf",
+        "output_dims":"X,Y,Z,Linearity"
+    },{
+        "type":"writers.las",
+        "filename":"./data/2-linearity.las",
+        "minor_version":4,
+        "extra_dims":"all"
+    },{
+        "type":"filters.assign",
+        "value" :
+    [
+    "Classification = 15 WHERE Linearity > 0.700" 
+    ]},{
+        "type":"filters.range",
+        "limits":"Classification[15:15]"
+    },
+    
+       "./data/3-clasify-linearity.las"
+]
