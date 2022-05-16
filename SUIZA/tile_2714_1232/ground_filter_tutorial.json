@@ -1,6 +1,6 @@
 {
   "pipeline":[
-    "./data/2713_1232.las",
+    "./data/2714_1232.las",
     {
       "type":"filters.assign",
       "assignment":"Classification[:]=0"
@@ -15,8 +15,7 @@
     },
     {
       "type": "filters.hag_nn"
-    },
-    {
+    },{
       "type": "filters.range",
       "limits": "HeightAboveGround[5:)"
     },
@@ -24,7 +23,7 @@
       "type":"filters.range",
       "limits":"Classification[0:0]"
     },{
-      "filename":"./data/2713_1232_no_ground.las"
+      "filename":"./data/2714_1232_no_ground.las"
     }
   ]
 }

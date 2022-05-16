@@ -1,0 +1,24 @@
+[
+    "./data/filtered.las",
+    {
+        "type":"filters.dbscan",
+        "min_points":20,
+        "eps":20.0,
+        "dimensions":"X,Y,Z"
+    },
+    {
+        "type":"writers.bpf",
+        "filename":"./data/dbscan.bpf",
+        "output_dims":"X,Y,Z,ClusterID"
+    },{
+      "type":"writers.las",
+      "filename":"./data/dbscan.las"
+    },
+    {
+          "type": "filters.mongo",
+          "expression": {
+              "ClusterID": { "$in":  [0,1,3,4] }
+          }
+    },
+    "./data/filtereddbscan.las"
+]
