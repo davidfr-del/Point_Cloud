@@ -18,7 +18,7 @@
     }, {
         "type": "filters.mongo",
         "expression": {
-            "Linearity": { "$gt": 0.800 }
+            "Linearity": { "$gt": 0.700 }
         }
     },
     "./data/filtered.las"
