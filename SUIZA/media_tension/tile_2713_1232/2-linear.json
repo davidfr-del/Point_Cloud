@@ -1,0 +1,25 @@
+[
+    "./data/2713_1232_no_ground.las",
+    {
+        "type":"filters.covariancefeatures",
+        "knn":5,
+        "threads": 2,
+        "feature_set": "Linearity"
+    },
+    {
+        "type":"writers.bpf",
+        "filename":"./data/linearity.bpf",
+        "output_dims":"X,Y,Z,Linearity"
+    },{
+        "type":"writers.las",
+        "filename":"./data/linear.las",
+        "minor_version":4,
+        "extra_dims":"all"
+    }, {
+        "type": "filters.mongo",
+        "expression": {
+            "Linearity": { "$gt": 0.850 }
+        }
+    },
+    "./data/filtered.las"
+]
