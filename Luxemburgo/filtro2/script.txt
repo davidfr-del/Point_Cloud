@@ -1,0 +1,13 @@
+cd Luxemburgo1
+for /F %i in ('dir /b data\LID*.las') do pdal pipeline 1-ground_filter.json --readers.las.filename=./data/%i   --writers.las.filename=./data/no_ground_%i
+
+for /F %i in ('dir /b data\LID*.las') do pdal pipeline 2-scattering.json  --readers.las.filename=./data/no_ground_%i --writers.las.filename=./data/scattering_%i 
+
+for /F %i in ('dir /b data\LID*.las') do pdal pipeline 3-vertical.json  --readers.las.filename=./data/scattering_%i --writers.las.filename=./data/vertical_%i 
+
+
+for /F %i in ('dir /b data\LID*.las') do pdal pipeline 4-linear.json  --readers.las.filename=./data/vertical_%i  --writers.las.filename=./data/linear_%i
+
+for /F %i in ('dir /b data\LID*.las') do pdal pipeline 5-Radial_density.json --readers.las.filename=./data/linear_%i   --writers.las.filename=./data/highpower_%i
+
+for /F %i in ('dir /b data\LID*.las') do pdal pipeline 6-dimensions.json --readers.las.filename=./data/highpower_%i   --writers.text.filename=./data/dimensions_%i.txt
