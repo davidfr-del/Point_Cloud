@@ -1,0 +1,16 @@
+ [
+    "./data/LIDAR2019_NdP_69500_70000_EPSG2169_no_ground.las",
+    {
+        "type":"filters.covariancefeatures",
+        "knn":20,
+        "threads": 2,
+        "feature_set": "Linearity"
+    },
+    {
+        "type": "filters.mongo",
+        "expression": {
+            "Linearity": { "$gt": 0.700 }
+        }
+    },
+    "./data/filtered.las"
+]

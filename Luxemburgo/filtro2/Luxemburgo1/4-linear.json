@@ -1,0 +1,28 @@
+
+[
+    "./data/LIDAR2019_NdP_69500_70000_EPSG2169_no_ground.las",
+    {
+        "type":"filters.covariancefeatures",
+        "knn":20,
+        "radius":40,
+        "threads": 12,
+        "feature_set": "Linearity"
+    },
+    {
+        "type":"filters.assign",
+        "value" :
+[
+  "Classification = 3 WHERE (Linearity >= 0.05)"
+  
+]
+    },{
+        "type":"filters.range",
+        "limits":"Classification[3:3]"
+    },
+    "./data/filtered.las"
+]
+
+
+
+
+
