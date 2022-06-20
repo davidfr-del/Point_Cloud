@@ -1,0 +1,22 @@
+{
+    "pipeline": [
+        {
+            "type":"readers.las",
+            "filename":""
+      
+        },{
+            "column": "cls",
+            "datasource": "attributes.vrt",
+            "dimension": "Classification",
+            "layer": "OGRGeoJSON",
+            "type": "filters.overlay"
+        },{
+            "type":"filters.range",
+            "limits":"Classification[1:1]"
+          },
+         {
+            "type":"writers.las",
+            "filename":"./data/result.text"
+        }
+    ]
+}
