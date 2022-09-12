@@ -1,0 +1,6 @@
+cd Luxemburgo1
+for /F %i in ('dir /b data\LID*.las') do pdal pipeline 0-ground_truth.txt --readers.las.filename=./data/%i   --writers.las.filename=./data/gt_%i
+
+for /F %i in ('dir /b data\LID*.las') do pdal pipeline 1-dimensions.json --readers.las.filename=./data/gt_%i   --writers.text.filename=./data/dimensions_%i.txt
+
+
