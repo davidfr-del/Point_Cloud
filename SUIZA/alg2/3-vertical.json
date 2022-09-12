@@ -1,0 +1,23 @@
+[
+    "out.las",
+    {
+        "type":"filters.covariancefeatures",
+        "knn":20,
+        "radius":11,
+        "threads": 50,
+        "feature_set": "Verticality"
+    },
+    {
+        "type":"filters.assign",
+        "value" :
+[
+  "Classification = 2 WHERE (Verticality >0.2)"
+  
+]
+    },{
+        "type":"filters.range",
+        "limits":"Classification[2:2]"
+    },
+    "filtered.las"
+]
+
