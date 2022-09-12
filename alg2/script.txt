@@ -1,0 +1,31 @@
+for /F %i in ('dir /b data\LID*.laz') do pdal pipeline 1-ground_filter.json --readers.las.filename=./data/%i   --writers.las.filename=./data/no_ground/no_ground_%i
+
+for /F %i in ('dir /b data\LID*.laz') do pdal pipeline 2-scattering.json  --readers.las.filename=./data/no_ground/no_ground_%i --writers.las.filename=./data/scattering/scattering_%i 
+
+for /F %i in ('dir /b data\LID*.laz') do pdal pipeline 3-vertical.json  --readers.las.filename=./data/scattering/scattering_%i --writers.las.filename=./data/vertical/vertical_%i 
+
+for /F %i in ('dir /b data\LID*.laz') do pdal pipeline 4-Radial_density.json --readers.las.filename=./data/vertical/vertical_%i   --writers.las.filename=./data/highpower/highpower_%i
+
+
+
+cd C:\LAStools\bin
+
+for /F %i in ('dir /b C:\Users\Usuario\Desktop\UDC\TFG\Muchos_tiles\Luxemburgo\69-tiles\data\LID*.laz') do lasboundary -i C:\Users\Usuario\Desktop\UDC\TFG\Muchos_tiles\Luxemburgo\69-tiles\data\highpower\highpower_%i -o C:\Users\Usuario\Desktop\UDC\TFG\Muchos_tiles\Luxemburgo\69-tiles\data\contorno\contorno_%i.shp
+
+cd ..\..\OSGeo4W
+
+for /F %i in ('dir /b C:\Users\Usuario\Desktop\UDC\TFG\Muchos_tiles\Luxemburgo\69-tiles\data\LID*.laz') do ogr2ogr -f GeoJSON  C:\Users\Usuario\Desktop\UDC\TFG\Muchos_tiles\Luxemburgo\69-tiles\data\atributos\attributes_%i.geojson C:\Users\Usuario\Desktop\UDC\TFG\Muchos_tiles\Luxemburgo\69-tiles\data\contorno\contorno_%i.shp -nln attributes
+
+python.exe C:\Users\Usuario\Desktop\UDC\TFG\Muchos_tiles\Luxemburgo\69-tiles\add_properties.py
+
+cd C:\Users\Usuario\Desktop\UDC\TFG\Muchos_tiles\Luxemburgo\69-tiles
+
+for /F %i in ('dir /b data\LID*.laz') do pdal pipeline 5-clipping.json --filters.overlay.datasource=./data/atributos/attributes_%i.geojson  --filters.overlay.layer=attributes --readers.las.filename=./data/no_ground/no_ground_%i   --writers.las.filename=./data/boundary/boundary_%i 
+
+for /F %i in ('dir /b data\LID*.laz') do pdal pipeline 6-Radial_density.json --readers.las.filename=./data/boundary/boundary_%i   --writers.las.filename=./data/density/density_%i
+
+for /F %i in ('dir /b data\LID*.laz') do pdal pipeline 7-dimensions.json --readers.las.filename=./data/density/density_%i   --writers.text.filename=./data/dimensions/dimensions_%i.txt
+
+
+
+
