@@ -10,6 +10,16 @@
             "feature_set": "X,Y,Z,RadialDensity"
         },
         {
+            "type":"writers.bpf",
+            "filename":"./data/7-RadialDensity.bpf",
+            "output_dims":"X,Y,Z,RadialDensity"
+        },
+        {
+            "type":"writers.las",
+            "filename":"./data/7-RadialDensity.las",
+            "minor_version":4,
+            "extra_dims":"all"
+        },{
             "type":"filters.assign",
             "value" :
   [
