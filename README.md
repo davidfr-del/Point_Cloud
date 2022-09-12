@@ -1,6 +1,6 @@
 ## Point Cloud
 
-#Software neceasario:
+# Requisitos:
 - LAStools
 - PDAL
 - OSGeo4W
