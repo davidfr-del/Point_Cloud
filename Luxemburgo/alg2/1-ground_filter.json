@@ -1,0 +1,38 @@
+{
+  "pipeline":[
+    {
+      "type":"readers.las",
+      "filename":""
+
+  },
+  {
+    "type": "filters.range",
+    "limits": "ReturnNumber(0:],NumberOfReturns(0:]"
+},
+    {
+      "type":"filters.assign",
+      "assignment":"Classification[:]=0"
+    },
+    {
+      "type":"filters.smrf",
+      "ignore":"Classification[7:7]",
+      "slope":0.2,
+      "window":16,
+      "threshold":0.45,
+      "scalar":1.2
+    },
+    {
+      "type": "filters.hag_nn"
+    },
+    {
+      "type": "filters.range",
+      "limits": "HeightAboveGround[5:)"
+    },
+    {
+      "type":"filters.range",
+      "limits":"Classification[0:0]"
+    },{
+      "filename":"./data/LIDAR2019_NdP_69500_70000_EPSG2169_no_ground.las"
+    }
+  ]
+}
