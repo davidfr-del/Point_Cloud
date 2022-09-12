@@ -1,7 +1,0 @@
-[
-  "./data/gt/gt*.laz",
-  {
-      "type" : "filters.merge"
-  },
-  "./total_gt.laz"
-]
