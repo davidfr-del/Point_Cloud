@@ -1,8 +1,0 @@
-[
-  "./data/LIDAR2019_NdP_69500_69500_EPSG2169.laz",
-    {
-      "type":"filters.range",
-      "limits":"Classification[15:15]"
-    },
-   "./data/gt_LIDAR2019_NdP_69500_69500_EPSG2169.laz"
-]
