@@ -19,8 +19,7 @@
     },
     {
       "type": "filters.hag_nn"
-    },
-    {
+    },{
       "type": "filters.range",
       "limits": "HeightAboveGround[5:)"
     },
